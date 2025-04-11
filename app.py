@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -55,4 +56,6 @@ def success():
     return render_template('success.html')
 
 if __name__ == '__main__':
+    if not os.path.exists("users.db"):
+        os.system("init_db.py")
     app.run(debug=True)
